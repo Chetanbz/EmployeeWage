@@ -9,8 +9,8 @@ public class EmployeeWage {
 		int empRateHrs = 20;
 		int maxDay    = 20;
 		int empHrs;
-		int empWage;
 		int EmpTotalwage=0;
+		int EmpTotalHrs = 0;
 		//Employee can be parttime or fulltime on alternate days
 		
 		for (int day =1; day <= maxDay; day++) {
@@ -24,12 +24,15 @@ public class EmployeeWage {
 		else {
 			empHrs =0;
 		}
-		empWage = empHrs*empRateHrs;
-		System.out.println("Emp Wage : " + empWage);
-		EmpTotalwage += empWage;
+		EmpTotalHrs += empHrs; 
+		System.out.println("Day# : " + day + " " + "Emp Hrs: " + empHrs );
+		if (EmpTotalHrs > 100) {
+		EmpTotalHrs = 100;
+			break;
 		}
+		}
+		EmpTotalwage = EmpTotalHrs*empRateHrs;
 		System.out.println("Total Emp Wage :" + EmpTotalwage);
-
 	}
 
 }
