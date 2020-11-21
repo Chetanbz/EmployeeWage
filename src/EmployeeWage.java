@@ -6,27 +6,29 @@ public class EmployeeWage {
 		
 		int isPartTime = 1;
 		int isFullTime = 2 ;
-		int empCheck = (int)Math.floor(Math.random()*10)%3;
 		int empRateHrs = 20;
-		int empHrs = 0;
+		int maxDay    = 20;
+		int empHrs;
 		int empWage;
+		int EmpTotalwage=0;
+		//Employee can be parttime or fulltime on alternate days
 		
-		switch (empCheck) {
-		case (1) :{
-			empHrs = 4;
-			break;
-		}
-		case (2) :{
+		for (int day =1; day <= maxDay; day++) {
+		int empCheck = (int)Math.floor(Math.random()*10)%3;
+		if ( empCheck == isFullTime){
 			empHrs = 8;
-			break;
-		}
-		case (3) :{
-			empHrs = 0;
-		}
-			
+			}
+		else if (empCheck == isPartTime){
+			empHrs = 4;
+			}
+		else {
+			empHrs =0;
 		}
 		empWage = empHrs*empRateHrs;
 		System.out.println("Emp Wage : " + empWage);
+		EmpTotalwage += empWage;
+		}
+		System.out.println("Total Emp Wage :" + EmpTotalwage);
 
 	}
 
