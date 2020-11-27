@@ -10,6 +10,7 @@ public class EmployeeWageBuilder {
 	public static void main(String[] args) {
 		 Map<String,Integer> empWageCompany = new HashMap<String,Integer>();
 		 List<EmployeeWage>  emp = new ArrayList<EmployeeWage>();
+		 Map<String,List> daily = new HashMap<String,List>();
 		while(true) {
 			System.out.println("Do you wish to add Wage for Employee for Company ");
 			System.out.println("Press 1 Add new EmployeeWage for new Company  \n Press 0 Exit ");
@@ -23,10 +24,11 @@ public class EmployeeWageBuilder {
 			EmployeeWage empWage = new EmployeeWage();
 			empWage.companyCriteria();
 			empWageCompany.put(name,empWage.wageCalculator());
-			System.out.println("Total EmployeeWage is " +empWage.EmpTotalWage);
-			empWage = null;
+			daily.put(name,empWage.dailyWageCalculator());
+			
 		}
 		System.out.println(empWageCompany);
+		System.out.println(daily);
 
 	}
 }

@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class EmployeeWage {
@@ -28,7 +30,8 @@ public class EmployeeWage {
 		empRateHrs = sc.nextInt();	
 	}
 	
-	public static int wageCalculator() {
+	public static List<Integer> dailyWageCalculator() {
+		List<Integer>  daily = new ArrayList<Integer>();
 		int EmpTotalHrs = 0;
 		int EmpTotalwage =0;
 		for (int day =1; day <= maxDay; day++) {
@@ -44,6 +47,8 @@ public class EmployeeWage {
 				empHrs =0;
 			}
 			EmpTotalHrs += empHrs; 
+			int num = empHrs*empRateHrs;
+			daily.add(num);
 			//System.out.println("Day# : " + day + " " + "Emp Hrs: " + empHrs );
 			if (EmpTotalHrs > maxHrsMonth) {
 			EmpTotalHrs = maxHrsMonth;
@@ -52,8 +57,23 @@ public class EmployeeWage {
 		}
 		EmpTotalwage = EmpTotalHrs*empRateHrs;
 		System.out.println("Total Emp Wage :" + EmpTotalwage);
+		return daily;
+	}
+	
+	public static int wageCalculator() {
+		List<Integer>  daily = dailyWageCalculator();
+		int EmpTotalHrs = 0;
+		int EmpTotalwage =0;
+		for (int i :daily) {
+			EmpTotalHrs +=i;
+		}
+		if (EmpTotalHrs > maxHrsMonth) {
+			EmpTotalHrs = maxHrsMonth;
+			}
+		EmpTotalwage = EmpTotalHrs*empRateHrs;
 		return EmpTotalwage;
 	}
+	
 	public String toString() {
 		return "Total wage for company : " + EmpTotalWage ;
 	}
