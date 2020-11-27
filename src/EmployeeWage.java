@@ -1,19 +1,21 @@
 import java.util.Scanner;
 
 public class EmployeeWage {
-	static int isPartTime = 1;
+	static int  isPartTime = 1;
 	static int isFullTime = 2 ;
-	static int empRateHrs = 20;   // limit is set reference purpose
-	static int maxDay    = 31;    // limit is set for reference purpose
-	static int maxHrsMonth = 100; // limit is set for reffference purpose
-	static int EmpTotalwage=0;
-	static int EmpTotalHrs = 0;
+	static int empRateHrs ;   // limit is set reference purpose
+	static int maxDay  ;   // limit is set for reference purpose
+	static int maxHrsMonth ; // limit is set for reffference purpose
+	static int EmpTotalWage = 0;
+
+	
+	
 
 	public static void main(String[] args) {
 		System.out.println("provide Company policy on wage");
 		companyCriteria();
 		System.out.println("Welcome Employee");
-		wageCalculator();
+		 EmpTotalWage = wageCalculator();
 		
 	}
 	public static void companyCriteria() {
@@ -23,12 +25,12 @@ public class EmployeeWage {
 		System.out.println("Please provide maximum working Days in month");
 		maxDay      = sc.nextInt();
 		System.out.println("Please provide Rate per Hours");
-		empRateHrs = sc.nextInt();
-		
+		empRateHrs = sc.nextInt();	
 	}
 	
-	
-	public static void wageCalculator() {
+	public static int wageCalculator() {
+		int EmpTotalHrs = 0;
+		int EmpTotalwage =0;
 		for (int day =1; day <= maxDay; day++) {
 			int empHrs = 0;
 			int empCheck = (int)Math.floor(Math.random()*10)%3;
@@ -42,7 +44,7 @@ public class EmployeeWage {
 				empHrs =0;
 			}
 			EmpTotalHrs += empHrs; 
-			System.out.println("Day# : " + day + " " + "Emp Hrs: " + empHrs );
+			//System.out.println("Day# : " + day + " " + "Emp Hrs: " + empHrs );
 			if (EmpTotalHrs > maxHrsMonth) {
 			EmpTotalHrs = maxHrsMonth;
 				break;
@@ -50,6 +52,10 @@ public class EmployeeWage {
 		}
 		EmpTotalwage = EmpTotalHrs*empRateHrs;
 		System.out.println("Total Emp Wage :" + EmpTotalwage);
+		return EmpTotalwage;
+	}
+	public String toString() {
+		return "Total wage for company : " + EmpTotalWage ;
 	}
 
 }
